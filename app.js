@@ -238,7 +238,7 @@ const clickHandler= (e)=>{
     //use event object-> $button[0]->e.target
     if(quiz[quizIndex].correct===e.target.textContent){
         window.alert("正解💗")
-        
+
         score++;
      }else{
         window.alert("不正解💀")
@@ -249,7 +249,7 @@ const clickHandler= (e)=>{
      if(quizIndex<quizLength){
         //If you have quizzes left
         setQuiz();
-    　　　 
+    　　　 git
     } else{
         // you do not have quizzes anymore
         if(score===quizLength){
