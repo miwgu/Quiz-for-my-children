@@ -227,47 +227,90 @@ const setQuiz = ()=>{
     //2.Contents of answers (4 alternativ)
     let i=0;
     while (i<buttonLength){
-        console.log($button[i].textContent =quiz[quizIndex].answers[i]);
+        $button[i].textContent =quiz[quizIndex].answers[i];
         i++;
     } 
 };
+console.log("qIndex1"+quizIndex)
 
 setQuiz();
 
+console.log("qIndex2"+quizIndex)
+
+
+document.getElementById("judge-div").style.display="none";
+const messagediv=document.getElementById("judge-div");
+
 const clickHandler= (e)=>{
+    messagediv.style.display="block";
     //use event object-> $button[0]->e.target
-    if(quiz[quizIndex].correct===e.target.textContent){
-        window.alert("正解💗")
-        
+    console.log("quizInsdex: "+quizIndex+" "+quiz[quizIndex].correct )
+    if(quiz[quizIndex-1].correct===e.target.textContent){
+        document.getElementById("message").textContent="正解💗";
+        document.getElementById("message-2").style.display="none"
+        //window.alert("正解💗")
+        //message.style.display="block";
         score++;
      }else{
-        window.alert("不正解💀")
+        document.getElementById("message").textContent="不正解💀";
+        document.getElementById("message-2").style.display="block"
+        document.getElementById("message-2").textContent="正しい回答は\""+quiz[quizIndex-1].correct+"\"です。";
+        //window.alert("不正解💀")
+        //message.style.display="block";
      }
-     quizIndex++;//go to the next question
 
-     // how meny quizzes you did< The total number of quizzes
-     if(quizIndex<quizLength){
-        //If you have quizzes left
-        setQuiz();
-    　　　 
-    } else{
-        // you do not have quizzes anymore
-        if(score===quizLength){
-        window.alert("おめでとう❣"+score+"問、全て正解なので100点です❣よくがんばったね✨");
-        }else{
-        window.alert("終了です。あなたの正解数は "+score+"/"+quizLength+" よくがんばったね✨")
-        }
+     // when you click a button all button become disbled
+     let k=0
+     while(k<buttonLength){
+        $button[k].disabled=true;
+        k++;
      }
+    
 };
 
+
+
+
+//All buttons have clickHandler
 let j=0;
 while(j<buttonLength){
     $button[j].addEventListener("click", (e)=>{
         clickHandler(e);
+
+        //$button[j].disabled=true;
        });
        j++;
 }
 
+const nextQuiz= ()=>{
+    // when you click "次へ" button all button become abled
+    let l=0
+    while(l<buttonLength){
+       $button[l].disabled=false;
+       l++;
+    }
+    // how meny quizzes you did< The total number of quizzes
+    console.log("qindex3"+quizIndex)
+   if(quizIndex<quizLength){
+       //If you have quizzes left
+       setQuiz();
+       console.log("qindex4"+quizIndex)
+       
+   } else{
+       // you do not have quizzes anymore
+       if(score===quizLength){
+       window.alert("おめでとう❣"+score+"問、全て正解なので100点です❣よくがんばったね✨");
+       }else{
+       window.alert("終了です。あなたの正解数は "+score+"/"+quizLength+" よくがんばったね✨")
+       }
+    }
+    document.getElementById("judge-div").style.display="none"
+    quizIndex++;// go to the next quiz
+    console.log("qindex5"+quizIndex)
+   
+}
+
+nextQuiz();
 
 
 
