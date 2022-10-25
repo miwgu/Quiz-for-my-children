@@ -241,10 +241,12 @@ console.log("qIndex2"+quizIndex)
 document.getElementById("judge-div").style.display="none";
 const messagediv=document.getElementById("judge-div");
 
+document.getElementById("result-contents").style.display="none";
+const resultdiv=document.getElementById("result-contents");
+
 const clickHandler= (e)=>{
     messagediv.style.display="block";
     //use event object-> $button[0]->e.target
-    console.log("quizInsdex: "+quizIndex+" "+quiz[quizIndex].correct )
     if(quiz[quizIndex-1].correct===e.target.textContent){
         document.getElementById("message").textContent="正解💗";
         document.getElementById("message-2").style.display="none"
@@ -264,11 +266,8 @@ const clickHandler= (e)=>{
      while(k<buttonLength){
         $button[k].disabled=true;
         k++;
-     }
-    
+     }    
 };
-
-
 
 
 //All buttons have clickHandler
@@ -276,8 +275,6 @@ let j=0;
 while(j<buttonLength){
     $button[j].addEventListener("click", (e)=>{
         clickHandler(e);
-
-        //$button[j].disabled=true;
        });
        j++;
 }
@@ -290,24 +287,31 @@ const nextQuiz= ()=>{
        l++;
     }
     // how meny quizzes you did< The total number of quizzes
-    console.log("qindex3"+quizIndex)
    if(quizIndex<quizLength){
        //If you have quizzes left
        setQuiz();
-       console.log("qindex4"+quizIndex)
-       
    } else{
        // you do not have quizzes anymore
+       document.getElementById("main-contents").style.display="none";
+       resultdiv.style.display="block";
        if(score===quizLength){
-       window.alert("おめでとう❣"+score+"問、全て正解なので100点です❣よくがんばったね✨");
+        document.getElementById("result").textContent="おめでとう❣";
+        document.getElementById("result-2").textContent=score+"問、全て正解なので100点です❣よくがんばったね✨";
        }else{
-       window.alert("終了です。あなたの正解数は "+score+"/"+quizLength+" よくがんばったね✨")
+        document.getElementById("result").textContent="終了です。";
+        document.getElementById("result-2").textContent="あなたの正解数は "+score+"/"+quizLength+" よくがんばったね✨";
        }
     }
     document.getElementById("judge-div").style.display="none"
     quizIndex++;// go to the next quiz
-    console.log("qindex5"+quizIndex)
-   
+    console.log("quizIndex_buttoncheck: "+quizIndex)
+    if (quizIndex===quizLength){
+        document.querySelector("input").value="終了"
+        console.log("c1:"+ document.querySelector('input').value)
+    }else{
+        document.querySelector("input").value="次へ"
+        console.log("c2:"+document.querySelector("input").value)
+    }
 }
 
 nextQuiz();

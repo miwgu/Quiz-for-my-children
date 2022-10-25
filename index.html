@@ -23,7 +23,7 @@
 </head>
 
 <body>
- <div class="container">
+ <div id="main-contents" class="container">
  <div class="jumbotron mt-5">
   <div class="d-flex justify-content-center">
     <div id ="myc-question" class="mt-3 alart-primary" role="alart" >
@@ -49,20 +49,30 @@
 
   <div style="background-color:#EDF7FF;border: 10px inset #31A9EE;border-radius: 10px 20px;"　　class="container text-center p-5" id="judge-div"　>
    <div class="row gx-5" >
-      <div class="col align-self-start m-3">
-        
+      <div class="col align-self-start m-5">
+
       </div>
       <div  role="alart" class="col align-self-center m-3">
         <p id="message">Here is message <br></p>
         <p id="message-2">correct or incorrect</p>
       </div>
       <div class="col align-self-center m-3">
-        <input type="button" value="次へ" onclick="nextQuiz()" />
+        <input id ="next" type="button" value="次へ" onclick="nextQuiz()" />
       </div>
-  </div>
+  　</div>
   </div>
  </div>
 </div> 
+</div> 
+
+<div id="result-contents" class="container">
+  <div class="jumbotron mt-5" style="background-color:#bdf9d3;">
+    <p id="result" class="lead">1st message about the result</p>
+    <hr  class="my-4">
+    <p id="result-2">2nd mssage</p>
+  </div>
+
+</div>
  <script src="app.js"></script>
 
 </body>
