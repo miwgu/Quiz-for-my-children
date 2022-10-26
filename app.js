@@ -280,6 +280,9 @@ while(j<buttonLength){
 }
 
 const nextQuiz= ()=>{
+
+    document.getElementById("progress").textContent=quizIndex+1+"/"+quizLength;
+
     // when you click "次へ" button all button become abled
     let l=0
     while(l<buttonLength){
